@@ -72,3 +72,10 @@ migmorph[ , ]
 # Q: Subset ToothGrowth to show only the rows where the dose is higher than or equal to 1.0
 # hint: Try ToothGrowth$dose >= 1.0
 # hint: Remember that you can pass a vector of TRUE/FALSE within the [] to subset: ToothGrowth[true_false_vector, ]
+
+
+# Reading from Excel files (edit and check)
+install.packages("readxl") # or
+install.packages("openxlsx")
+
+read_excel("session_1/data/MSD_data.xlsx", sheet = 1)
