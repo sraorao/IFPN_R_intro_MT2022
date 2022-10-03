@@ -77,5 +77,8 @@ migmorph[ , ]
 # Reading from Excel files (edit and check)
 install.packages("readxl") # or
 install.packages("openxlsx")
+library(readxl)
 
 read_excel("session_1/data/MSD_data.xlsx", sheet = 1)
+#or
+ifny <- read_excel("session_1/data/MSD_data.xlsx", sheet = 'IFNy')
