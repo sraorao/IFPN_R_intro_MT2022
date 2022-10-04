@@ -82,3 +82,6 @@ library(readxl)
 read_excel("session_1/data/MSD_data.xlsx", sheet = 1)
 #or
 ifny <- read_excel("session_1/data/MSD_data.xlsx", sheet = 'IFNy')
+
+# Writing data
+write.csv(migmorph, "session_1/data/migmorph.csv")

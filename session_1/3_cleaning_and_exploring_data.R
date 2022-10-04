@@ -54,3 +54,4 @@ migmorph[which_rows_mig1 | which_rows_elongatedness1.5, ]
 # Q2.2: Draw an XY plot showing the relationship between these two variables in this new dataset
 
 # Q3: Write the data.frame from Q2 to a new file named filtered_data.csv
+
