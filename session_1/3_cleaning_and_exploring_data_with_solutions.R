@@ -1,0 +1,63 @@
+###R for biologists
+##Irina & Rao, 05/10/2022
+
+# Q: Knockdown of which gene causes the cells to migrate the least?
+
+
+#### Cleaning data ####
+?airquality
+head(airquality)
+airquality$Ozone
+
+which_rows_complete = complete.cases(airquality)
+airquality[which_rows_complete, ]
+
+ozone_without_missing = na.omit(airquality) # mistake here
+
+
+#### FILTERING data ####
+# Subsetting by logical vectors comes in handy here
+# Knockdown of which genes results in migration > 1?
+
+which_rows_mig1 = migmorph$migration > 1
+migmorph[which_rows_mig1, ]
+
+# Knockdown of which genes results in elongatedness < 1.5?
+
+which_rows_elongatedness1.5 = migmorph$elongatedness < 1.5
+migmorph[which_rows_elongatedness1.5, ]
+
+#### DETOUR: logical operations - AND OR ####
+
+TRUE & TRUE     # AND
+TRUE & FALSE
+TRUE | TRUE     # OR
+TRUE | FALSE
+!TRUE # Negation
+!FALSE # Negation
+
+x = 5
+x > 4 & x < 6
+x > 4 | x > 6
+
+# Filtering with more than one criterion
+migmorph[which_rows_mig1 | which_rows_elongatedness1.5, ]
+
+#### Problem set ####
+# Use the migmorph data.frame for these questions
+
+# Q1: Knockdown of which gene results in the highest migration?
+# # hint: this can be accomplished with the max() function
+max_value = max(migmorph$migration) # find the max value
+max_value_filter = (migmorph$migration == max_value) # create max value filter
+migmorph[max_value_filter, "gene_symbol"] # filter / subset
+migmorph[migmorph$migration == max(migmorph$migration), "gene_symbol"]
+# Q2: Make a new data.frame that has only rows with 0.9 > migration > 0.4 AND elongatedness > 1.4
+# Q2.1: What is the correlation between migration and elongatedness in this new dataset?
+# Q2.2: Draw an XY plot showing the relationship between these two variables in this new dataset
+migration_filter = (migmorph$migration < 0.9) & (migmorph$migration > 0.4)
+morph_filter = migmorph$elongatedness > 1.4
+migmorph_filtered = migmorph[migration_filter & morph_filter, ]
+cor.test(migmorph_filtered$migration, migmorph_filtered$elongatedness)
+# Q3: Write the data.frame from Q2 to a new file named filtered_data.csv
+
